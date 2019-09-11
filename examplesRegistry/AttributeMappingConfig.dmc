@@ -1,0 +1,20 @@
+map_S_root_S_root = function(){ 
+var outputroot={};
+
+var count_i_attributes = 0;
+outputroot =  {};
+
+for(i_attributes in inputroot.entities.attributes){
+outputroot.id = Number(inputroot.entities.attributes[i_attributes].id);
+outputroot.name = inputroot.entities.attributes[i_attributes].name;
+outputroot.modelId = Number(inputroot.entities.attributes[i_attributes].model_id);
+outputroot.others = inputroot.entities.attributes[i_attributes].id.toString().concat('',inputroot.entities.attributes[i_attributes].name);
+
+count_i_attributes++;
+}
+return outputroot;
+};
+
+
+
+

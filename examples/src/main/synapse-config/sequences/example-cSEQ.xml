@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="example-cSEQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="json">
+        <format>{"response": {"value1":"a value for C"}}</format>
+        <args/>
+    </payloadFactory>
+    <log>
+        <property name="sequenceLogger" value="Sequence C executed!"/>
+        <property expression="$body" name="body"/>
+    </log>
+</sequence>

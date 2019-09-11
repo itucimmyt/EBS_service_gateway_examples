@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="example-bSEQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <payloadFactory media-type="json">
+        <format>{"arrayBody": ["value B1","value B2","value B3"]}</format>
+        <args/>
+    </payloadFactory>
+    <log>
+        <property name="sequenceLogger" value="Sequence B executed!"/>
+        <property expression="$body" name="body"/>
+    </log>
+</sequence>

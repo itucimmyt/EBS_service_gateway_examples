@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><artifacts>
+    <artifact name="examplePxS" groupId="org.cimmyt.examples.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/examplePxS.xml</file>
+    </artifact>
+    <artifact name="example-aSEQ" groupId="org.cimmyt.examples.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/example-aSEQ.xml</file>
+    </artifact>
+    <artifact name="example-bSEQ" groupId="org.cimmyt.examples.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/example-bSEQ.xml</file>
+    </artifact>
+    <artifact name="example-cSEQ" groupId="org.cimmyt.examples.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/example-cSEQ.xml</file>
+    </artifact>
+    <artifact name="switchPxS" groupId="org.cimmyt.examples.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/switchPxS.xml</file>
+    </artifact>
+    <artifact name="dummyFieldApiSEQ" groupId="org.cimmyt.examples.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/dummyFieldApiSEQ.xml</file>
+    </artifact>
+    <artifact name="TaskExample" groupId="org.cimmyt.examples.task" version="1.0.0" type="synapse/task" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/tasks/TaskExample.xml</file>
+    </artifact>
+    <artifact name="TransformPxS" groupId="org.cimmyt.examples.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/TransformPxS.xml</file>
+    </artifact>
+    <artifact name="jsonbSEQ" groupId="org.cimmyt.examples.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/jsonbSEQ.xml</file>
+    </artifact>
+    <artifact name="transformPxS" groupId="org.cimmyt.examples.proxy-service" version="1.0.0" type="synapse/proxy-service" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/proxy-services/TransformPxS.xml</file>
+    </artifact>
+    <artifact name="nestingApiEP" groupId="org.cimmyt.examples.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/nestingApiEP.xml</file>
+    </artifact>
+</artifacts>

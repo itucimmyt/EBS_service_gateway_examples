@@ -1,0 +1,16 @@
+{
+    "entities": {
+        "attributes": [
+            {
+                "updated_on": null,
+                "created_on": null,
+                "system_status": null,
+                "name": "sample_attribute",
+                "updated_by": null,
+                "id": "1",
+                "model_id": "1",
+                "created_by": null
+            }
+        ]
+    }
+}

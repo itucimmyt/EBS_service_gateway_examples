@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="jsonbSEQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log>
+        <property name="checkpoint" value="JSONB SEQUENCE"/>
+    </log>
+    <call>
+        <endpoint>
+            <http method="get" uri-template="http://172.17.60.49:8280/services/nestingDS/configs"/>
+        </endpoint>
+    </call>
+    <respond/>
+</sequence>

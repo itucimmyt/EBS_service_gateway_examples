@@ -1,0 +1,62 @@
+map_S_root_S_root = function(){ 
+var outputroot={};
+
+var count_i_req = 0;
+var count_i_ent_i_req = 0;
+var count_i_entype_i_ent_i_req = 0;
+outputroot =  {};
+outputroot.req =  [];
+
+for(i_req in inputroot.reqs.req){
+var count_i_ent = 0;
+var count_i_entype_i_ent = 0;
+outputroot.req[count_i_req] =  {};
+outputroot.req[count_i_req].id = inputroot.reqs.req[i_req].id;
+outputroot.req[count_i_req].experiment_name = inputroot.reqs.req[i_req].experiment_name;
+outputroot.req[count_i_req].ticket_number = inputroot.reqs.req[i_req].ticket_number;
+outputroot.req[count_i_req].enty =  [];
+
+if( (inputroot.reqs.req[i_req].enties) ){
+for(i_ent in inputroot.reqs.req[i_req].enties.ent){
+var count_i_entype = 0;
+outputroot.req[count_i_req].enty[count_i_ent] =  {};
+outputroot.req[count_i_req].enty[count_i_ent].id = inputroot.reqs.req[i_req].enties.ent[i_ent].id;
+outputroot.req[count_i_req].enty[count_i_ent].name = inputroot.reqs.req[i_req].enties.ent[i_ent].name;
+outputroot.req[count_i_req].enty[count_i_ent].entity_type_id = Number(inputroot.reqs.req[i_req].enties.ent[i_ent].entity_type_id);
+outputroot.req[count_i_req].enty[count_i_ent].entypes =  [];
+
+if( (inputroot.reqs.req[i_req].enties.ent[i_ent].entypes) ){
+for(i_entype in inputroot.reqs.req[i_req].enties.ent[i_ent].entypes.entype){
+outputroot.req[count_i_req].enty[count_i_ent].entypes[count_i_entype] =  {};
+outputroot.req[count_i_req].enty[count_i_ent].entypes[count_i_entype].id = inputroot.reqs.req[i_req].enties.ent[i_ent].entypes.entype[i_entype].id;
+outputroot.req[count_i_req].enty[count_i_ent].entypes[count_i_entype].name = inputroot.reqs.req[i_req].enties.ent[i_ent].entypes.entype[i_entype].name;
+
+count_i_entype++;
+count_i_entype_i_ent++;
+count_i_entype_i_ent_i_req++;
+}
+}
+
+count_i_ent++;
+count_i_ent_i_req++;
+}
+}
+
+count_i_req++;
+}
+return outputroot;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+

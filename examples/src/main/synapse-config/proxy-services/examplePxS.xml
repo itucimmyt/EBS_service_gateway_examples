@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy name="examplePxS" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
+    <target>
+        <inSequence>
+            <log level="custom">
+                <property expression="$ctx" name="context"/>
+                <property expression="$body" name="body"/>
+            </log>
+            <conditionalRouter continueAfter="true">
+                <conditionalRoute asynchronous="true" breakRoute="true">
+                    <condition>
+                        <equal source="name" type="param" value="a"/>
+                    </condition>
+                    <target sequence="example-aSEQ"/>
+                </conditionalRoute>
+                <conditionalRoute asynchronous="true" breakRoute="true">
+                    <condition>
+                        <equal source="name" type="param" value="b"/>
+                    </condition>
+                    <target sequence="example-bSEQ"/>
+                </conditionalRoute>
+                <conditionalRoute asynchronous="true" breakRoute="true">
+                    <condition>
+                        <equal source="name" type="param" value="c"/>
+                    </condition>
+                    <target sequence="example-cSEQ"/>
+                </conditionalRoute>
+            </conditionalRouter>
+        </inSequence>
+        <outSequence>
+            <send/>
+        </outSequence>
+        <faultSequence/>
+    </target>
+</proxy>

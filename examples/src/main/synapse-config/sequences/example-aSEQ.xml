@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="example-aSEQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <property expression="get-property('axis2', 'HTTP_METHOD')" name="HttpMethod" scope="default" type="STRING"/>
+    <log>
+        <property expression="get-property('HttpMethod')" name="METHOD_USED"/>
+        <property expression="get-property('uri.var.asfile')" name="asfile"/>
+        <property expression="get-property('query.param.asfile')" name="asfile2"/>
+        <property expression="$url:asfile" name="asfile3"/>
+    </log>
+    <switch source="$url:asfile">
+        <case regex="true">
+            <header description="set as attachment" name="Content-Disposition" scope="transport" value="attachment; filename=&quot;fieldAPI.json&quot;"/>
+        </case>
+        <default>
+            <header description="set as inline" name="Content-Disposition" scope="transport" value="inline"/>
+        </default>
+    </switch>
+    <payloadFactory media-type="json">
+        <format>{"body": "a value for A"}</format>
+        <args/>
+    </payloadFactory>
+    <log>
+        <property name="sequenceLogger" value="Sequence A executed!"/>
+        <property expression="$body" name="body"/>
+    </log>
+</sequence>
