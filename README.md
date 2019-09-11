@@ -1,7 +1,9 @@
 # EBS_service_gateway_examples
 simple use of basic components
 
-## What's inside
+# What's inside
+
+## example project (Enterprise Service Bus project)
 
 ### examplePxS
 A simple proxy service which routes incoming HTTP requests for batch processing, returning an HTTP Status Code 202: Accepted.
@@ -29,4 +31,14 @@ Reusable series of mediators which perform more complex and/or specific tasks.
 ### TaskExample
 Timed action which emits a mesage to examplePxS proxy every 5 seconds up to five times. Tasks also support cron format for scheduling tasks.
 WARNING: we are investigating how to unregister a task
+
+## data services project
+
+### nestingDS
+Example of a dataservice with two datasources, one B4R and one Sample Manager database.
+
+ - /req and /req2 are examples of nested queries from Sample Manager DB
+ - /configs reads 5 records from B4R platform.config
+
+Although there are not examples (yet), a data service can nest queries from all of their registered databases in one single query and expose it as one REST call.
 
