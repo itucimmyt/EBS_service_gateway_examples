@@ -1,0 +1,89 @@
+<data name="nestingDS" transports="http https local">
+   <config enableOData="false" id="ituDevDB">
+      <property name="driverClassName">org.postgresql.Driver</property>
+      <property name="url">jdbc:postgresql://172.17.61.5:5433/sample_manager2</property>
+      <property name="username">postgres</property>
+      <property name="password">siu*2016</property>
+      <property name="dataSourceProps"/>
+      <property name="dynamicUserAuthMapping">
+         <configuration/>
+      </property>
+   </config>
+   <config enableOData="false" id="b4rDB">
+      <property name="driverClassName">org.postgresql.Driver</property>
+      <property name="url">jdbc:postgresql://172.17.61.5:5433/b4rfixturedb</property>
+      <property name="username">postgres</property>
+      <property name="password">siu*2016</property>
+   </config>
+   <query id="getRequest1" useConfig="ituDevDB">
+      <sql>select id, experiment_name, ticket_number from sm.request where id between 1 and 5</sql>
+      <result element="reqs" rowName="req">
+         <element column="id" name="id" xsdType="string"/>
+         <element column="experiment_name" name="experiment_name" xsdType="string"/>
+         <element column="ticket_number" name="ticket_number" xsdType="string"/>
+         <call-query href="getEntities" requiredRoles="">
+            <with-param name="param0" query-param="id"/>
+         </call-query>
+      </result>
+   </query>
+   <query id="getEntities" useConfig="ituDevDB">
+      <sql>select id,name,entity_type_id from sm.entity where entity_type_id = :param0 limit 3</sql>
+      <result element="enties" rowName="enty">
+         <element column="id" name="id" xsdType="integer"/>
+         <element column="name" name="name" xsdType="string"/>
+         <element column="entity_type_id" name="entity_type_id" xsdType="integer"/>
+         <call-query href="type3" requiredRoles="">
+            <with-param name="type_id" query-param="id"/>
+         </call-query>
+      </result>
+      <param name="param0" optional="false" sqlType="INTEGER"/>
+   </query>
+   <query id="type3" useConfig="ituDevDB">
+      <sql>select id,name from sm.entity_type where id = :type_id</sql>
+      <result element="entypes" rowName="entype">
+         <element column="id" name="id" xsdType="integer"/>
+         <element column="name" name="name" xsdType="string"/>
+      </result>
+      <param name="type_id" optional="false" sqlType="INTEGER"/>
+   </query>
+   <query id="GetRequest1b" useConfig="ituDevDB">
+      <sql>select id, experiment_name, ticket_number from sm.request where id between 1 and 5</sql>
+      <result outputType="json">{&#xd; "resp2": {&#xd; "reqs2": [&#xd; {&#xd; "id": "$id",&#xd; "exptName": "$experiment_name",&#xd; "ticketNo":"$ticket_number",&#xd; "@GetEntities2":"$param0-&gt;id"&#xd; }&#xd; ]&#xd; }&#xd;}</result>
+   </query>
+   <query id="GetEntities2" useConfig="ituDevDB">
+      <sql>select id,name,entity_type_id from sm.entity where entity_type_id = :param0 limit 3</sql>
+      <result element="entys" rowName="enty">
+         <element column="id" name="id" xsdType="string"/>
+         <element column="name" name="name" xsdType="string"/>
+         <element column="entity_type_id" name="entity_type_id" xsdType="string"/>
+      </result>
+      <param name="param0" optional="false" sqlType="INTEGER"/>
+   </query>
+   <query id="reqIn" useConfig="ituDevDB">
+      <sql>select id,ticket_number,experiment_name from sm.request where id in (:ids)</sql>
+      <result element="Entries" rowName="Entry">
+         <element column="id" name="id" xsdType="integer"/>
+         <element column="ticket_number" name="ticket_number" xsdType="string"/>
+         <element column="experiment_name" name="experiment_name" xsdType="string"/>
+      </result>
+      <param name="ids" optional="false" paramType="ARRAY" sqlType="INTEGER"/>
+   </query>
+   <query id="getPlatformConfig" useConfig="b4rDB">
+      <sql>select id,abbrev,name,config_value from platform.config limit 5</sql>
+      <result outputType="json">{"configs":{"items":[{"id":"$id","abbrev":"$abbrev","name":"$name","configs":$config_value}]}}</result>
+   </query>
+   <resource method="GET" path="/req">
+      <call-query href="getRequest1"/>
+   </resource>
+   <resource method="GET" path="/req2">
+      <call-query href="GetRequest1b"/>
+   </resource>
+   <resource method="GET" path="/reqIn">
+      <call-query href="reqIn">
+         <with-param name="ids" query-param="ids"/>
+      </call-query>
+   </resource>
+   <resource method="GET" path="/configs">
+      <call-query href="getPlatformConfig"/>
+   </resource>
+</data>
