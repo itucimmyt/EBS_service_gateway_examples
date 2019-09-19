@@ -32,4 +32,10 @@
     <artifact name="nestingApiEP" groupId="org.cimmyt.examples.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
         <file>src/main/synapse-config/endpoints/nestingApiEP.xml</file>
     </artifact>
+    <artifact name="fieldApiTransformSEQ" groupId="org.cimmyt.examples.sequence" version="1.0.0" type="synapse/sequence" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/sequences/fieldApiTransformSEQ.xml</file>
+    </artifact>
+    <artifact name="fieldbookDsEP" groupId="org.cimmyt.examples.endpoint" version="1.0.0" type="synapse/endpoint" serverRole="EnterpriseServiceBus">
+        <file>src/main/synapse-config/endpoints/fieldbookDsEP.xml</file>
+    </artifact>
 </artifacts>

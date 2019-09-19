@@ -1,0 +1,28 @@
+<data enableBatchRequests="true" name="API2DS" transports="http https local">
+   <config enableOData="false" id="API2DS">
+      <property name="driverClassName">org.postgresql.Driver</property>
+      <property name="url">jdbc:postgresql://172.17.61.5:5433/b4rdemodb_1908</property>
+      <property name="username">postgres</property>
+      <property name="password">siu*2016</property>
+   </config>
+   <query id="fieldbookSQL" useConfig="API2DS">
+      <sql>SELECT 1=1</sql>
+      <result outputType="json">{  "fieldbooks": {    "fieldbook": [      {        "@experimentSQL": "$experimentId-&gt;experimentId"      }    ]  }}</result>
+      <param name="experimentId" optional="false" paramType="ARRAY" sqlType="INTEGER"/>
+   </query>
+   <query id="experimentSQL" useConfig="API2DS">
+      <sql>SELECT "experiment"."id", "experiment"."experiment_name", "experiment"."author_id", "experiment"."program_id", "experiment"."project_id", "experiment"."experiment_type", "experiment"."experiment_sub_type", "experiment"."experiment_sub_sub_type", "experiment"."phase_id", (SELECT "value" FROM "operational"."experiment_data" WHERE "variable_id" = '2294' AND "experiment"."id" = "experiment_data"."experiment_id") AS "experiment_code", (SELECT "value" FROM "operational"."experiment_data" WHERE "variable_id" = '104' AND "experiment"."id" = "experiment_data"."experiment_id") AS "experiment_design" FROM "operational"."experiment" WHERE "id" IN (:experimentId)</sql>
+      <result outputType="json">{  "experiments": {    "experiment": [      {        "experimentid": "$id",        "experimentname": "$experiment_name",        "code": "$experiment_code",        "stewardid": "$author_id",        "programid": "$program_id",        "projectid": "$project_id",        "statdesigntypeid": "$experiment_design",        "type": "$experiment_type",        "subtype": "$experiment_sub_type",        "subsubtype": "$experiment_sub_sub_type",        "stage": "$phase_id", "@entryListSQL": "$experimentId-&gt;experimentId"      }    ]  }}</result>
+      <param name="experimentId" optional="false" paramType="ARRAY" sqlType="INTEGER"/>
+   </query>
+   <query id="entryListSQL" useConfig="API2DS">
+      <sql>SELECT "entry_list"."id", "entry_list"."product_id", "entry_list"."product_name", "entry_list"."entry_type", "entry_list"."entlistno", "seed_storage_log"."seed_storage_id", "product"."parentage", "product"."designation"  FROM "operational"."entry_list" LEFT JOIN "operational"."seed_storage_log" ON "seed_storage_log"."id" = "entry_list"."seed_storage_log_id"LEFT JOIN "master"."product" ON "product"."id" = "entry_list"."product_id" WHERE "experiment_id" IN (:experimentId)</sql>
+      <result outputType="json">{  "entryLists": {    "entryList": [      {        "entryid": "$id",        "geid": "$product_id",        "gename": "$product_name",        "pedigree": "$parentage",        "codedname": "$designation",        "role": "$entry_type",        "number": "$entlistno",        "seedid": "$seed_storage_id"      }    ]  }}</result>
+      <param name="experimentId" optional="false" paramType="ARRAY" sqlType="INTEGER"/>
+   </query>
+   <resource disableStreaming="true" method="GET" path="/fieldbook">
+      <call-query href="fieldbookSQL">
+         <with-param name="experimentId" query-param="experimentId"/>
+      </call-query>
+   </resource>
+</data>

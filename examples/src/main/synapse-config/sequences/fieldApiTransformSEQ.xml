@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence name="fieldApiTransformSEQ" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+    <log level="custom">
+        <property expression="$axis2:REST_URL_POSTFIX" name="restURL"/>
+        <property expression="$url:experimentId" name="experimentId"/>
+    </log>
+    <header name="Accept" scope="transport" value="application/json"/>
+    <header name="Content-Disposition" scope="transport" value="attachment; filename=&quot;fieldAPI.json&quot;"/>
+    <call>
+        <endpoint key="fieldbookDsEP"/>
+    </call>
+    <script language="js"><![CDATA[var data = mc.getPayloadJSON().fieldbooks.fieldbook[0].experiments.experiment; 
+		var newExpts = [];
+		for(var i = 0; i<data.length;i++){
+		   var expt = data[i];
+		   var newExpt = {};
+		   newExpt.experimentId = expt.experimentid;
+		   newExpt.stage = expt.stage;
+		   newExpt.subtype = expt.subtype;
+		   newExpt.experimentName = expt.experimentname;
+		   newExpt.statDesignTypeId = expt.statdesigntypeid;
+		   newExpt.subSubtype = expt.subsubtype;
+		   newExpt.projectId = expt.projectid;
+		   newExpt.programId = expt.programid;
+		   newExpt.entryList = [];
+		   if(expt.entryLists.entryList)
+		   for(var j = 0; j < expt.entryLists.entryList.length;j++){
+		     entry = expt.entryLists.entryList[j];
+		     newEntry = {};
+		     newEntry.entryId = entry.entryid;
+		     newEntry.pedigree = entry.pedigree;
+		     newEntry.seedId = entry.seedid;
+		     newEntry.number = entry.number;
+		     newEntry.role = entry.role;
+		     newEntry.codedName = entry.codedname;
+		     newEntry.geId = entry.geid;
+		     newEntry.geName = entry.gename;
+		     newExpt.entryList.push(newEntry);
+		   }
+		   newExpt.experimentLocations = [];
+		   if(expt.experimentLocations.experimentLocation)
+		   for(var k = 0; k < expt.experimentLocations.experimentLocation.length;k++){
+		     exptLoc = expt.experimentLocations.experimentLocation[k];
+		     newExptLoc = {};
+		     newExptLoc.plantingDate = exptLoc.plantingdate;
+		     newExptLoc.experimentLocationId = exptLoc.experimentlocationid;
+		     newExptLoc.plantingSeasonId = exptLoc.plantingseasonid;
+		     newExptLoc.experimentLocationName = exptLoc.experimentlocationname;
+		     newExptLoc.experimentGroupName = exptLoc.experimentgroupname;
+		     newExptLoc.siteId = exptLoc.siteid;
+		     newExptLoc.siteClass = exptLoc.siteclass;
+		     newExptLoc.locManagementProtocolId = exptLoc.locmanagementprotocolid;
+		     newExptLoc.plantingProtocolId = exptLoc.plantingprotocolid;
+		     newExptLoc.experimentGroupId = exptLoc.experimentgroupid;
+		     newExpt.experimentLocations.push(newExptLoc);
+		   }
+		   newExpts.push(newExpt);
+    }
+    var response = {experiments:newExpts};
+    
+	mc.setPayloadJSON(response);]]></script>
+</sequence>

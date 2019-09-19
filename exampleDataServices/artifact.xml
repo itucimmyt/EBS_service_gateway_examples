@@ -2,4 +2,7 @@
     <artifact name="nestingDS" groupId="org.cimmyt.exampleDataServices.dataservice" version="1.0.0" type="service/dataservice" serverRole="DataServicesServer">
         <file>dataservice/nestingDS.dbs</file>
     </artifact>
+    <artifact name="API2DS" groupId="org.cimmyt.exampleDataServices.dataservice" version="1.0.0" type="service/dataservice" serverRole="DataServicesServer">
+        <file>dataservice/API2DS.dbs</file>
+    </artifact>
 </artifacts>

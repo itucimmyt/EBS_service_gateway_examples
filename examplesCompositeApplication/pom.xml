@@ -10,22 +10,15 @@
   <description>cimmyt-examplesCompositeApplication</description>
   <properties>
     <org.cimmyt.examples.sequence_._example-cSEQ>capp/EnterpriseServiceBus</org.cimmyt.examples.sequence_._example-cSEQ>
-    <org.cimmyt.examples.resource_._AttributeMappingConfig_xsltStyleSheet>capp/EnterpriseServiceBus</org.cimmyt.examples.resource_._AttributeMappingConfig_xsltStyleSheet>
     <org.cimmyt.examples.proxy-service_._switchPxS>capp/EnterpriseServiceBus</org.cimmyt.examples.proxy-service_._switchPxS>
-    <org.cimmyt.examples.resource_._AttributeMappingConfig_inputSchema>capp/EnterpriseServiceBus</org.cimmyt.examples.resource_._AttributeMappingConfig_inputSchema>
     <org.cimmyt.examples.endpoint_._nestingApiEP>capp/EnterpriseServiceBus</org.cimmyt.examples.endpoint_._nestingApiEP>
-    <org.cimmyt.examples.resource_._NewResource>capp/EnterpriseServiceBus</org.cimmyt.examples.resource_._NewResource>
-    <org.cimmyt.examples.resource_._AttributeMappingConfig>capp/EnterpriseServiceBus</org.cimmyt.examples.resource_._AttributeMappingConfig>
+    <org.cimmyt.examples.sequence_._fieldApiTransformSEQ>capp/EnterpriseServiceBus</org.cimmyt.examples.sequence_._fieldApiTransformSEQ>
     <org.cimmyt.examples.proxy-service_._transformPxS>capp/EnterpriseServiceBus</org.cimmyt.examples.proxy-service_._transformPxS>
-    <org.cimmyt.examples.resource_._AttributeMappingConfig_outputSchema>capp/EnterpriseServiceBus</org.cimmyt.examples.resource_._AttributeMappingConfig_outputSchema>
-    <org.cimmyt.examples.resource_._nestingConfig_outputSchema>capp/EnterpriseServiceBus</org.cimmyt.examples.resource_._nestingConfig_outputSchema>
     <artifact.types>jaggery/app=zip,synapse/priority-executor=xml,synapse/inbound-endpoint=xml,service/rule=aar,synapse/message-store=xml,event/stream=json,service/meta=xml,datasource/datasource=xml,synapse/proxy-service=xml,bpel/workflow=zip,synapse/sequence=xml,synapse/endpointTemplate=xml,carbon/application=car,wso2/gadget=dar,synapse/api=xml,synapse/event-source=xml,synapse/message-processors=xml,event/receiver=xml,lib/dataservice/validator=jar,synapse/template=xml,synapse/endpoint=xml,lib/carbon/ui=jar,lib/synapse/mediator=jar,event/publisher=xml,synapse/local-entry=xml,synapse/task=xml,webapp/jaxws=war,registry/resource=zip,synapse/configuration=xml,service/axis2=aar,synapse/lib=zip,synapse/sequenceTemplate=xml,event/execution-plan=siddhiql,service/dataservice=dbs,web/application=war,lib/library/bundle=jar</artifact.types>
-    <org.cimmyt.examples.resource_._nestingConfig>capp/EnterpriseServiceBus</org.cimmyt.examples.resource_._nestingConfig>
     <org.cimmyt.examples.sequence_._dummyFieldApiSEQ>capp/EnterpriseServiceBus</org.cimmyt.examples.sequence_._dummyFieldApiSEQ>
     <org.cimmyt.examples.sequence_._example-aSEQ>capp/EnterpriseServiceBus</org.cimmyt.examples.sequence_._example-aSEQ>
-    <org.cimmyt.examples.resource_._nestingConfig_inputSchema>capp/EnterpriseServiceBus</org.cimmyt.examples.resource_._nestingConfig_inputSchema>
+    <org.cimmyt.examples.endpoint_._fieldbookDsEP>capp/EnterpriseServiceBus</org.cimmyt.examples.endpoint_._fieldbookDsEP>
     <org.cimmyt.examples.sequence_._example-bSEQ>capp/EnterpriseServiceBus</org.cimmyt.examples.sequence_._example-bSEQ>
-    <org.cimmyt.examples.resource_._nestingConfig_xsltStyleSheet>capp/EnterpriseServiceBus</org.cimmyt.examples.resource_._nestingConfig_xsltStyleSheet>
     <org.cimmyt.examples.proxy-service_._examplePxS>capp/EnterpriseServiceBus</org.cimmyt.examples.proxy-service_._examplePxS>
     <org.cimmyt.examples.sequence_._jsonbSEQ>capp/EnterpriseServiceBus</org.cimmyt.examples.sequence_._jsonbSEQ>
   </properties>
@@ -35,12 +28,6 @@
       <artifactId>example-aSEQ</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>org.cimmyt.examples.resource</groupId>
-      <artifactId>AttributeMappingConfig</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
     </dependency>
     <dependency>
       <groupId>org.cimmyt.examples.sequence</groupId>
@@ -61,46 +48,22 @@
       <type>xml</type>
     </dependency>
     <dependency>
-      <groupId>org.cimmyt.examples.resource</groupId>
-      <artifactId>AttributeMappingConfig_outputSchema</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>org.cimmyt.examples.resource</groupId>
-      <artifactId>AttributeMappingConfig_inputSchema</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>org.cimmyt.examples.resource</groupId>
-      <artifactId>nestingConfig_xsltStyleSheet</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
       <groupId>org.cimmyt.examples.proxy-service</groupId>
       <artifactId>transformPxS</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
     </dependency>
     <dependency>
-      <groupId>org.cimmyt.examples.resource</groupId>
-      <artifactId>NewResource</artifactId>
+      <groupId>org.cimmyt.examples.endpoint</groupId>
+      <artifactId>fieldbookDsEP</artifactId>
       <version>1.0.0</version>
-      <type>zip</type>
+      <type>xml</type>
     </dependency>
     <dependency>
       <groupId>org.cimmyt.examples.sequence</groupId>
       <artifactId>jsonbSEQ</artifactId>
       <version>1.0.0</version>
       <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>org.cimmyt.examples.resource</groupId>
-      <artifactId>nestingConfig</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
     </dependency>
     <dependency>
       <groupId>org.cimmyt.examples.endpoint</groupId>
@@ -121,22 +84,10 @@
       <type>xml</type>
     </dependency>
     <dependency>
-      <groupId>org.cimmyt.examples.resource</groupId>
-      <artifactId>nestingConfig_outputSchema</artifactId>
+      <groupId>org.cimmyt.examples.sequence</groupId>
+      <artifactId>fieldApiTransformSEQ</artifactId>
       <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>org.cimmyt.examples.resource</groupId>
-      <artifactId>nestingConfig_inputSchema</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
-    </dependency>
-    <dependency>
-      <groupId>org.cimmyt.examples.resource</groupId>
-      <artifactId>AttributeMappingConfig_xsltStyleSheet</artifactId>
-      <version>1.0.0</version>
-      <type>zip</type>
+      <type>xml</type>
     </dependency>
   </dependencies>
   <repositories>

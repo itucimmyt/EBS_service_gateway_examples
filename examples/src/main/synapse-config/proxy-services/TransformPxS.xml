@@ -2,41 +2,48 @@
 <proxy name="transformPxS" startOnLoad="true" transports="http" xmlns="http://ws.apache.org/ns/synapse">
     <target>
         <inSequence>
-            <call>
-                <endpoint key="nestingApiEP"/>
-            </call>
-            <log level="full"/>
-            <script language="js"><![CDATA[var data = mc.getPayloadJSON(); 
-var newReqs = [];
-for(var i = 0; i<data.reqs.req.length;i++){
-   var req = data.reqs.req[i];
-   var newReq = {};
-   newReq.id = req.id;
-   newReq.experiment_name = req.experiment_name;
-   newReq.ticket_number = req.ticket_number;
-   newReq.enties = [];
-   if(req.enties.enty)
-   for(var j = 0; j < req.enties.enty.length;j++){
-     enty = req.enties.enty[j];
-     newEnty = {};
-     newEnty.id = enty.id;
-     newEnty.name = enty.name;
-     newEnty.entity_type_id = enty.entity_type_id;
-     newEnty.entypes = [];
-     if(enty.entypes.entype)
-     for(var k = 0; k< enty.entypes.entype.length; k++){
-       entype = enty.entypes.entype[k];
-       newEntype = {};
-       newEntype.id = entype.id;
-       newEntype.name = entype.name;
-       newEnty.entypes.push(newEntype);
-     }
-     newReq.enties.push(newEnty);
-   }
-   newReqs.push(newReq);
-}
-mc.setPayloadJSON(newReqs);]]></script>
-            <log level="full"/>
+            <switch source="get-property('To')">
+                <case regex=".*/fieldbook.*">
+                    <sequence key="fieldApiTransformSEQ"/>
+                </case>
+                <default>
+                    <call>
+                        <endpoint key="nestingApiEP"/>
+                    </call>
+                    <log level="full"/>
+                    <script language="js"><![CDATA[var data = mc.getPayloadJSON(); 
+		var newReqs = [];
+		for(var i = 0; i<data.reqs.req.length;i++){
+		   var req = data.reqs.req[i];
+		   var newReq = {};
+		   newReq.id = req.id;
+		   newReq.experiment_name = req.experiment_name;
+		   newReq.ticket_number = req.ticket_number;
+		   newReq.enties = [];
+		   if(req.enties.enty)
+		   for(var j = 0; j < req.enties.enty.length;j++){
+		     enty = req.enties.enty[j];
+		     newEnty = {};
+		     newEnty.id = enty.id;
+		     newEnty.name = enty.name;
+		     newEnty.entity_type_id = enty.entity_type_id;
+		     newEnty.entypes = [];
+		     if(enty.entypes.entype)
+		     for(var k = 0; k< enty.entypes.entype.length; k++){
+		       entype = enty.entypes.entype[k];
+		       newEntype = {};
+		       newEntype.id = entype.id;
+		       newEntype.name = entype.name;
+		       newEnty.entypes.push(newEntype);
+		     }
+		     newReq.enties.push(newEnty);
+		   }
+		   newReqs.push(newReq);
+		}
+		mc.setPayloadJSON(newReqs);]]></script>
+                    <log level="full"/>
+                </default>
+            </switch>
             <respond/>
         </inSequence>
         <outSequence/>

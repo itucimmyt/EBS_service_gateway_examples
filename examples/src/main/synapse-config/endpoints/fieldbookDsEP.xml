@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<endpoint name="fieldbookDsEP" xmlns="http://ws.apache.org/ns/synapse">
+    <http uri-template="http://172.17.60.49:8280/services/APIFBDS"/>
+</endpoint>
